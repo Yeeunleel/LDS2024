@@ -25,7 +25,7 @@ BEGIN{
     }
 
     #본문에서 각주 번호 제거
-    gsub(/\[[0-9]+\]/, "", $2)
+    gsub(/\s*\[[0-9]+\]/, "", $2)
     
     # Q4. 본문을 "data/apicius/recipes-new/[번호] 영어 이름.txt" 파일로 쓰기
     # WRITE SOME CODE HERE
