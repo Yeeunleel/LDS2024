@@ -8,7 +8,8 @@ BEGIN{
     # Q1. $1(이름 필드)에서 라틴어 이름 제거하기
     # WRITE SOME CODE HERE
     split($1, name, "\r?\n +")
-
+    title = name[1]
+    
     # Q2. $2(본문 필드)에서 줄바꿈 문자를 공백(띄어쓰기)으로 바꾸기
     # WRITE SOME CODE HERE
     gsub(/\r?\n/, " ", $2)
@@ -17,10 +18,9 @@ BEGIN{
     # WRITE SOME CODE HERE
 
     # 제목에서 맨 앞에 있는 요리 번호를 제외한 각주 번호 없애기
-    title = name[1] # 라틴어가 제거된 이름
     if (match(title, /^\[([0-9]+)\]/, number)) {
         title_number = number[0] # 요리 번호
-        gsub(/\[[0-9]+\] /, "", title) # 제목에서 모든 "[번호]" 꼴을 제거
+        gsub(/\s*\[[0-9]+\]/, "", title) # 제목에서 모든 "[번호]" 꼴을 제거
         title = title_number " " title # 요리 번호와 "[번호]"가 제거된 요리 이름을 조합
     }
 
