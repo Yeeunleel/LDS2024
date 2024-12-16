@@ -21,7 +21,6 @@
 |데이터 가공1|데이터프레임이 구축되면 pandas 라이브러리와 정규표현식, spaCy, koNLPy, jamo 등의 자연어처리 라이브러리를 사용하여 각 영어 데이터와 한국어 데이터에서 수동 및 피동 표현을 감지한다.|[영어 수동문 감지 패턴 출처](https://stackoverflow.com/questions/74528441/detect-passive-or-active-sentence-from-text)|전체 달성|
 |데이터 가공2|영어 수동문을 기준으로 전체 데이터를 필터링하고, 한국어 피동 표현을 기준으로 전체 데이터를 추가 필터링하는 교차 분석을 통해 연구 결과의 신뢰성을 높인다.|영어 수동문을 기준으로만 전체 데이터를 필터링했다.|일부 달성|
 |데이터 활용|가공된 병렬 데이터에서 영어 수동문과 한국어 피동문의 대응 양상을 수치화해서 비교하고 시각화한다.|Matplotlib, Seaborn 라이브러리를 사용해서 실행함.|전체 달성|
-|...|...|...|...|
 
 ### 1.2.1 미달성 사유
 
@@ -57,20 +56,13 @@
 
 최종적으로 분석할 데이터는 원문, 번역문, kor_passive_count, eng_passive, count 네 개의 변수를 가진 6467행의 데이터프레임으로 정리했다. eng_passive_count의 합계는 6708개, kor_passive_count의 합계는 2645개이다. 한 데이터에서 수동/피동 표현이 여러 개 있을 수 있으므로 수동/피동 표현의 개수가 데이터 개수보다 클 수 있다. 최종 데이터프레임의 에시는 다음과 같다. 
 
-원문	번역문	kor_passive_count	eng_passive_count
-0	우리 제품은 어떤 방식으로 도쿄에 보내지나요?	How will our products be shipped to Tokyo?	1	1
-1	먼저 배로 도쿄 근처 항구까지 운반하고 그 후 차를 이용합니다.	They'll be sent to Tokyo port by the ship, then transported by vehicles.	0	1
-2	교육 안내 메일 하단에 작은 글씨로 적혀있어요.	It was written in very small letters at the bottom of the notification email.	1	1
-3	7월 29일부터 8월 2일까지가 공식적인 기간이에요.	It's officially scheduled from July 29 to August 2.	0	1
-4	네, 메일로 이미 공지를 했으니 다들 알고 있을 거에요.	Sure, but they'd already known since it was notified by email earlier.	0	1
-...	...	...	...	..
-|| 원문                | 번역문            | kor_passive_count | eng_passive_count |
-||---------------------|------------------|-------------------|-------------------|
-|0| 우리 제품은 어떤 방식으로 도쿄에 보내지나요?| How will our products be shipped to Tokyo? | 1 | 1 |
-|1|먼저 배로 도쿄 근처 항구까지 운반하고 그 후 차를 이용합니다.| They'll be sent to Tokyo port by the ship, then transported by vehicles.| 0 | 1 |
+|| 원문 | 번역문 | kor_passive_count | eng_passive_count |
+|--|--|--|--|--|
+|0|우리 제품은 어떤 방식으로 도쿄에 보내지나요? |How will our products be shipped to Tokyo?| 1 | 1 |
+|1|먼저 배로 도쿄 근처 항구까지 운반하고 그 후 차를 이용합니다.|They'll be sent to Tokyo port by the ship, then transported by vehicles.| 0 | 1 |
 |2|교육 안내 메일 하단에 작은 글씨로 적혀있어요.|It was written in very small letters at the bottom of the notification email.| 1 | 1 |
-|3|7월 29일부터 8월 2일까지가 공식적인 기간이에요.| It's officially scheduled from July 29 to August 2.| 0 | 1 |
-|4|네, 메일로 이미 공지를 했으니 다들 알고 있을 거에요.| Sure, but they'd already known since it was notified by email earlier.| 0 | 1 |
+|3|7월 29일부터 8월 2일까지가 공식적인 기간이에요.|It's officially scheduled from July 29 to August 2.| 0 | 1 |
+|4|네, 메일로 이미 공지를 했으니 다들 알고 있을 거에요.|Sure, but they'd already known since it was notified by email earlier.| 0 | 1 |
 |...|...|...|...|...|
 
 지금까지 기술한 과정의 구현 방법은 아래의 코드에서 확인할 수 있다.
